@@ -260,12 +260,10 @@ function get_stats()
 	$send['default_mem'] = trim(file_get_contents("/var/run/ethos/defaultmem.file"));
 	$send['vramsize'] = trim(file_get_contents("/var/run/ethos/vrams.file"));
 	$send['core'] = trim(`/opt/ethos/sbin/ethos-readdata core | xargs | tr -s ' '`);
-        if($miner == "tdxminer"){
-                $mem = trim(`/opt/ethos/sbin/ethos-readdata mem | xargs | tr -s ' '`);
-                $send['mem'] = str_replace("300", "1000", $mem);
-        } else {
-                $send['mem'] = trim(`/opt/ethos/sbin/ethos-readdata mem | xargs | tr -s ' '`);
-        }
+	$send['mem'] = trim(`/opt/ethos/sbin/ethos-readdata mem | xargs | tr -s ' '`);
+	if($miner == "tdxminer")  {
+    		$send['mem'] = str_replace("300", "1000", $send['mem']);
+	}
 	$send['memstates'] = trim(`/opt/ethos/sbin/ethos-readdata memstate | xargs | tr -s ' '`);
 	$send['meminfo'] = trim(file_get_contents("/var/run/ethos/meminfo.file"));
 	$send['voltage'] = trim(`/opt/ethos/sbin/ethos-readdata voltage | xargs | tr -s ' '`);

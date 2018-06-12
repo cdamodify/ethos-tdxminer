@@ -135,13 +135,12 @@ function check_alive($hashes) {
                                                 if ($m > 20000 || $m == 500) {
                                                         $crashed[] = $i;
                                                 }
-						break;
 				        } else {
                                         	if ($m < 1000 || $m > 20000 || $m == 500) {
                                                 	$crashed[] = $i;
 						}
-						break;
                                         }
+					break;
 
 				case "nvidia":
 					if ($m < 500) {
